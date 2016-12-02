@@ -2,9 +2,10 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/diddy');
 var Schema = mongoose.Schema;
 
-var SequenceSchema = new Schema ({
-  note: Array
+var SongSchema = new Schema ({
+  sequence: Array,
+  songName: String
 });
 
-var Sequence = mongoose.model("Sequence", SequenceSchema);
+var Song = mongoose.model("Song", SongSchema);
 module.exports = mongoose;
