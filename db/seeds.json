@@ -1,18 +1,18 @@
 [
   {
-    "sequence": [["C4", 2], ["E4", 3], ["G4", 2]],
+    "sequence": [["C"], ["E"], ["G"]],
     "songName": ""
   },
   {
-    "sequence": [["C4", 2], ["C2", 3], ["C2", 2]],
+    "sequence": [["C"], ["C"], ["C"]],
     "songName": ""
   },
   {
-    "sequence": [["C4", 2], ["C2", 3], ["C2", 2]],
+    "sequence": [["C"], ["C"], ["C"]],
     "songName": ""
   },
   {
-    "sequence": [["C4", 2], ["C2", 3], ["C2", 2]],
+    "sequence": [["C"], ["C"], ["C"]],
     "songName": ""
   }
 ]
