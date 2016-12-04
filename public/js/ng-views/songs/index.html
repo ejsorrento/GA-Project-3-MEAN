@@ -1,0 +1,12 @@
+<h1>{{vm.songs.length}} Songs</h1>
+
+<p data-ng-repeat="song in vm.songs">
+<a data-ui-sref="show({name: song.name})">{{song.name}}</a>
+</p>
+
+<form data-ng-submit="vm.create()">
+  <input type="text" ng-model="vm.newSong.name" placeholder="Name">
+  <input type="array" ng-model="vm.newSong.sequence" placeholder="Notes *Temporary*">
+  <input type="text" ng-model="vm.newSong.credit" placeholder="Creator">
+  <button type="submit">Create Song</button>
+</form>

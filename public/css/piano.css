@@ -1,0 +1,77 @@
+#keyboard {
+    margin: 20px;
+    border-left: 1px solid #000000;
+    width: 392px;
+    height: 151px;
+}
+
+.buttonWrapper {
+    margin: 20px;
+    clear: both;
+}
+
+#upper,
+#lower
+{
+    clear: both;
+}
+
+.key {
+    float: left;
+}
+
+.blackkey {
+    width: 30px;
+    height: 100px;
+    background-color: #000000;
+}
+
+.whitekey:hover {
+    cursor: pointer;
+}
+
+.whitekey {
+    background-color: #FFFFFF;
+    border-right: 1px solid #000000;
+}
+
+#upper .whitekey {
+    width:40px;
+    height: 100px;
+}
+
+#lower .whitekey {
+    border-bottom: 1px solid #000000;
+    width: 55px;
+    height: 30px;
+    padding: 20px 0 0 0;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#upper .middle,
+#lower .middle {
+    width: 25px;
+}
+
+.highlighted {
+    background-color: #FFA21E;
+}
+
+.buttonLabel {
+    float: left;
+}
+
+.playicon {
+    float: left;
+    margin: 2px 0 2px 2px;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 10px solid #FFA21E;
+}
+
+
+#noHistoryMessage {
+    margin: 20px;
+}

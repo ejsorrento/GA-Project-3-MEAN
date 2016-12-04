@@ -1,12 +1,87 @@
-<h1>{{vm.songs.length}} Songs</h1>
-
-<p data-ng-repeat="song in vm.songs">
-<a data-ui-sref="show({name: song.name})">{{song.name}}</a>
-</p>
-
-<form data-ng-submit="vm.create()">
-  <input type="text" ng-model="vm.newSong.name" placeholder="Name">
-  <input type="array" ng-model="vm.newSong.sequence" placeholder="Notes *Temporary*">
-  <input type="text" ng-model="vm.newSong.credit" placeholder="Creator">
-  <button type="submit">Create Song</button>
-</form>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Piano</title>
+	</head>
+	<body>
+		<div id="keyboard">
+			<ul class="unstyled" id="upper">
+				<li class="key whitekey c" data-note="c"></li>
+				<li class="key blackkey"></li>
+				<li class="key whitekey middle d" data-note="d"></li>
+				<li class="key blackkey"></li>
+				<li class="key whitekey e" data-note="e"></li>
+				<li class="key whitekey f" data-note="f"></li>
+				<li class="key blackkey"></li>
+				<li class="key whitekey middle g" data-note="g"></li>
+				<li class="key blackkey"></li>
+				<li class="key whitekey middle a" data-note="a"></li>
+				<li class="key blackkey"></li>
+				<li class="key whitekey b" data-note="b"></li>
+			</ul>
+			<ul class="unstyled" id="lower">
+				<li class="key whitekey c" data-note="c">
+					<audio id="soundC" class="keySound">
+						<source src="http://www.freesound.org/data/previews/95/95329_1579599-lq.mp3" type="audio/mpeg">
+						<source src="http://www.freesound.org/data/previews/95/95329_1579599-lq.mp3" type="audio/ogg">
+					</audio>
+					<span>C</span>
+				</li>
+				<li class="key whitekey d" data-note="d">
+					<audio id="soundD" class="keySound">
+						<source src="http://www.freesound.org/data/previews/95/95329_1579599-lq.mp3" type="audio/mpeg">
+						<source src="http://www.freesound.org/data/previews/95/95329_1579599-lq.ogg" type="audio/ogg">
+					</audio>
+					<span>D</span>
+				</li>
+				<li class="key whitekey e" data-note="e">
+					<audio id="soundE" class="keySound">
+						<source src="http://www.freesound.org/data/previews/95/95330_1579599-lq.mp3" type="audio/mpeg">
+						<source src="http://www.freesound.org/data/previews/95/95330_1579599-lq.ogg" type="audio/ogg">
+					</audio>
+					<span>E</span>
+				</li>
+				<li class="key whitekey f" data-note="f">
+					<audio id="soundF" class="keySound">
+						<source src="http://www.freesound.org/data/previews/95/95331_1579599-lq.mp3" type="audio/mpeg">
+						<source src="http://www.freesound.org/data/previews/95/95331_1579599-lq.ogg" type="audio/ogg">
+					</audio>
+					<span>F</span>
+				</li>
+				<li class="key whitekey g" data-note="g">
+					<audio id="soundG" class="keySound">
+						<source src="http://www.freesound.org/data/previews/95/95332_1579599-lq.mp3" type="audio/mpeg">
+						<source src="http://www.freesound.org/data/previews/95/95332_1579599-lq.ogg" type="audio/ogg">
+					</audio>
+					<span>G</span>
+				</li>
+				<li class="key whitekey a" data-note="a">
+					<audio id="soundA" class="keySound">
+						<source src="http://www.freesound.org/data/previews/95/95326_1579599-lq.mp3" type="audio/mpeg">
+						<source src="http://www.freesound.org/data/previews/95/95326_1579599-lq.ogg" type="audio/ogg">
+					</audio>
+					<span>A</span>
+				</li>
+				<li class="key whitekey b" data-note="b">
+					<audio id="soundB" class="keySound">
+						<source src="http://www.freesound.org/data/previews/95/95327_1579599-lq.mp3" type="audio/mpeg">
+						<source src="http://www.freesound.org/data/previews/95/95327_1579599-lq.ogg" type="audio/ogg">
+					</audio>
+					<span>B</span>
+				</li>
+			</ul>
+		</div>
+		<div class="buttonWrapper">
+			<button type="button" id="replayBtn">
+				<span class="buttonLabel">REPLAY</span>
+				<div class="playicon"></div>
+			</button>
+			<button type="button" id="resetBtn">RESET</button>
+      <button type="button" id="saveBtn">Save</button>
+		</div>
+		<p id="noHistoryMessage">No recorded notes to replay</p>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+  <!-- <script type="text/javascript" src="js/piano.js"></script> -->
+	</body>
+</html>
