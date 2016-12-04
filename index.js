@@ -17,15 +17,43 @@ app.engine(".hbs", hbs({
 app.use("/assets", express.static("public"));
 app.use(parser.json({extended: true}));
 
-app.get("/", (req, res) => {
+app.get("/", function(req, res) {
 res.render("songs-index");
 });
 
-app.get("/api/songs", (req, res) => {
+app.get("/api/songs", function(req, res) {
   Song.find({}).then(function(songs){
-  res.json();
+  res.json(songs);
 });
 });
+
+app.get("/api/songs/:name", function(req, res) {
+  Song.findOne({name:
+    req.params.name}).then(function(song) {
+    res.json(song);
+  });
+});
+
+app.post("/api/songs", function(req, res) {
+  Song.create(req.body).then(function(song){
+    res.json(song);
+  });
+});
+
+app.put("/api/songs/:name", function(req, res) {
+  Song.findOneAndUpdate({name:
+  req.params.name}, req.body, {new: true}).then(function(song) {
+    res.json(song);
+  });
+});
+
+app.delete("/api/songs/:name", function(req, res) {
+  Song.findOneAndRemove({name:
+    req.params.name}).then(function() {
+    res.json({ success: true });
+  });
+});
+// app.get("/api/album/songs/:id"
 
 app.listen(3001, () => {
   console.log("app listening");

@@ -4,8 +4,15 @@ var Schema = mongoose.Schema;
 
 var SongSchema = new Schema ({
   sequence: Array,
-  songName: String
+  name: String,
+  credit: String
 });
 
-var Song = mongoose.model("Song", SongSchema);
+var AlbumSchema = new Schema ({
+  title: String,
+  songs: [SongSchema]
+});
+
+mongoose.model("Album", AlbumSchema);
+mongoose.model("Song", SongSchema);
 module.exports = mongoose;

@@ -1,0 +1,16 @@
+<div data-ng-if="!vm.song">
+  <h2>That Song Doesn't Exist</h2>
+</div>
+
+<div data-ng-if="vm.song">
+  <h2>Song name: {{vm.song.name}}</h2>
+  <h2>Notes: {{vm.song.sequence}}</h2>
+  <h2>Creator: {{vm.song.credit}}</h2>
+</div>
+
+
+  <input type="text" ng-model="vm.song.name" placeholder="Name">
+  <input type="text" ng-model="vm.song.sequence" placeholder="Notes *Temporary*">
+  <input type="text" ng-model="vm.song.credit" placeholder="Creator">
+  <button data-ng-click="vm.update()">Update Song</button>
+  <button data-ng-click="vm.destroy()">Delete Song</button>
