@@ -17,14 +17,17 @@ angular
         "Song",
         songsShowControllerFunction
     ])
+    .directive("piano", function(){
+      return {
+        template: '<h1>Hi There!</h1>'
+      }
+    })
     .factory("Song", [
         "$resource",
         SongFactory
     ]);
 
-// function Piano() {
-//   template: '<h1>Hi There!</h1>'
-// }
+
 
 function SongFactory($resource) {
     return $resource("/api/songs/:name", {}, {
@@ -44,7 +47,6 @@ function songsIndexControllerFunction(Song, $state) {
             });
         });
     };
-    console.log("Hello")
 }
 
 function songsShowControllerFunction($state, $stateParams, Song) {
