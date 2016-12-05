@@ -108,11 +108,16 @@ var keyboardPlay = true;
     $(document).on('click', '.whitekey', pressKey());
     $(document).on('click', '#replayBtn',replay);
     $(document).on('click', '#resetBtn', clearNotesHistory);
-    $(document).on('click', '#saveBtn', updateSource);
-    //   $.ajax({
-    //     type: "POST",
-    //     url: "/api/songs",
-    //     data: {song: [notesHistory]}
-    //   })
-    // }
+    $(document).on('click', '#saveBtn', function(){
+      console.log("hello")
+      $.ajax({
+        type: "POST",
+        url: "/api/songs",
+        data: {
+          "sequence": [notesHistory],
+          "name": "hello",
+          "credit": "Yo"
+        }
+      })
+    })
 }())
