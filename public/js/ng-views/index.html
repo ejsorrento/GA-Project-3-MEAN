@@ -14,10 +14,22 @@
 </div>
 <div class="buttonWrapper">
   <button type="button" id="startRecord">Start Recording</button>
+  <button type="button" id="stopRecord">Stop Recording</button>
   <button type="button" id="replayBtn">
     <span class="buttonLabel">REPLAY</span>
     <div class="playicon"></div>
   </button>
   <button type="button" id="resetBtn">RESET</button>
   <button type="button" id="saveBtn">Save</button>
+</div>
+
+<div data-ng-show="vm.visibilityForSongs.visible">
+  <button type="button" data-ng-click="vm.toggleListSongs()">Cancel</button>
+  <div data-ng-repeat="song in vm.songs">
+    <h2>Song name: {{song.name}}</h2>
+    <h2>Creator: {{song.credit}}</h2>
+  </div>
+</div>
+<div data-ng-hide="vm.visibilityForSongs.visible">
+  <button ng-click="vm.toggleListSongs()">Save Song</button>
 </div>

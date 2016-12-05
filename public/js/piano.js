@@ -1,6 +1,7 @@
 /*global $: true, setTimeout: true, setInterval: true, clearInterval: true */
 var keyboardPlay = true;
 var notesHistory = [];
+var storedSequence = [];
 (function () {
     "use strict";
 
@@ -99,7 +100,13 @@ var notesHistory = [];
         },
 
         startRecord = () => {
-          console.log('Hello')
+          notesHistory = []
+        },
+
+        stopRecord = () => {
+          storedSequence = notesHistory
+          console.log(storedSequence)
+
         },
 
         //empty notesHistory array
@@ -114,6 +121,7 @@ var notesHistory = [];
     $(document).on('click', '#replayBtn',replay);
     $(document).on('click', '#resetBtn', clearNotesHistory);
     $(document).on('click', '#startRecord', startRecord)
+    $(document).on('click', '#stopRecord', stopRecord)
     // $(document).on('click', '#submit', function(){
     //   console.log(notesHistory)
     //   $.ajax({
