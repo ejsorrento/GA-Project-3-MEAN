@@ -19,7 +19,8 @@ angular
     ])
     .directive("piano", function(){
       return {
-        template: '<h1>Hi There!</h1>'
+        templateUrl: 'assets/js/ng-views/_piano.html',
+        replace: true
       }
     })
     .factory("Song", [
