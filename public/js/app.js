@@ -5,6 +5,11 @@ angular.module("diddy", [
 .config(["$stateProvider",
   RouterFunction
 ])
+.controller("welcomeController", [
+  "Song",
+  "$state",
+  welcomeControllerFunction
+])
 .controller("songsIndexController", [
   "Song",
   "$state",
@@ -27,14 +32,17 @@ function SongFactory($resource) {
   });
 }
 
-function songsIndexControllerFunction(Song, $state) {
-  this.songs = Song.query();
+function welcomeControllerFunction(Song, $state) {
   this.newSong = new Song();
   this.create = function() {
     this.newSong.$save().then(function(song) {
-      $state.go("show", { name: song.name});
+      $state.go("index", { name: song.name});
     });
   };
+}
+
+function songsIndexControllerFunction(Song, $state) {
+  this.songs = Song.query();
 }
 function songsShowControllerFunction($state, $stateParams, Song) {
   this.song = Song.get({name:
@@ -52,8 +60,12 @@ function songsShowControllerFunction($state, $stateParams, Song) {
 
 function RouterFunction ($stateProvider) {
   $stateProvider
+.state("welcome", {
+  url: "/",
+  templateUrl: "/assets/js/ng-views/welcome.html"
+})
   .state("index", {
-    url: "/",
+    url: "/songs",
     templateUrl: "/assets/js/ng-views/index.html",
     controller: "songsIndexController",
     controllerAs: "vm"
