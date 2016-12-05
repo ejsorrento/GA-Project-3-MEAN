@@ -1,13 +1,13 @@
 /*global $: true, setTimeout: true, setInterval: true, clearInterval: true */
 var keyboardPlay = true;
-
+var notesHistory = [];
 (function () {
     "use strict";
 
     //Define private variables and functions
     var sounds = {},  //sounds cache
         keys = {}, //keys cache
-        notesHistory = [], //played notes history
+        // notesHistory = [], //played notes history
         $noHistoryMsg = $('#noHistoryMessage'),
         // Mapping of keypresses to keynotes
         mapping = {
@@ -74,6 +74,7 @@ var keyboardPlay = true;
 
             if (notesHistory.length > 0) {
                 $noHistoryMsg.hide();
+                //loops through the sequence with duration
 
                 //replay all notes in notesHistory array for 1.5 second each
                 interval = setInterval(function () {
@@ -97,6 +98,10 @@ var keyboardPlay = true;
           source.src=''
         },
 
+        startRecord = () => {
+          console.log('Hello')
+        },
+
         //empty notesHistory array
         clearNotesHistory = function () {
             $noHistoryMsg.show();
@@ -108,16 +113,20 @@ var keyboardPlay = true;
     $(document).on('click', '.whitekey', pressKey());
     $(document).on('click', '#replayBtn',replay);
     $(document).on('click', '#resetBtn', clearNotesHistory);
-    $(document).on('click', '#saveBtn', function(){
-      console.log("hello")
-      $.ajax({
-        type: "POST",
-        url: "/api/songs",
-        data: {
-          "sequence": [notesHistory],
-          "name": "hello",
-          "credit": "Yo"
-        }
-      })
-    })
-}())
+    $(document).on('click', '#startRecord', startRecord)
+    // $(document).on('click', '#submit', function(){
+    //   console.log(notesHistory)
+    //   $.ajax({
+    //     type: "POST",
+    //     url: "/api/songs",
+    //     dataType: 'json',
+    //     data: {
+    //       name: "hello",
+    //       sequence: notesHistory,
+    //       credit: $('#credit').val()
+    //     }
+    //   }).done((response) => {
+    //     console.log(response)
+    //   })
+    // })
+})();

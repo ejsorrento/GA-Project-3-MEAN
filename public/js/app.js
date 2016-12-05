@@ -32,8 +32,14 @@ angular
     .factory("Song", [
         "$resource",
         SongFactory
+    ])
+    .factory("Piano", [
+      PianoFactory
     ]);
 
+function PianoFactory(){
+  return
+}
 
 
 function SongFactory($resource) {
@@ -47,20 +53,18 @@ function SongFactory($resource) {
 function songsWelcomeControllerFunction(Song, $state) {
     // this.songs = Song.query();
     this.newSong = new Song();
-    this.newSong = {visible: false}
+    this.visibility = {visible: false}
     this.toggleNew = function() {
-      this.newSong.visible = !(this.newSong.visible)
-      console.log(keyboardPlay)
+      this.visibility.visible = !(this.visibility.visible)
       keyboardPlay = !(keyboardPlay);
-      console.log(keyboardPlay)
     };
     this.create = function() {
-      console.log("hit")
-        // this.newSong.$save().then(function(song) {
-        //     $state.go("show", {
-        //         name: song.name
-        //     });
-        // });
+        this.newSong.sequence = notesHistory
+        this.newSong.$save().then(function(song) {
+            $state.go("show", {
+                name: song.name
+            });
+        });
     };
 }
 
@@ -92,7 +96,7 @@ function RouterFunction($stateProvider) {
         })
         .state("show", {
             url: "/songs/:name",
-            templateUrl: "/assets/js/ng-views/show.html",
+            templateUrl: "/assets/js/ng-views/songs/show.html",
             controller: "songsShowController",
             controllerAs: "vm"
         });

@@ -1,21 +1,21 @@
 [
   {
-    "sequence": [["C"], ["E"], ["G"]],
+    "sequence": ["C", "E", "G"],
     "name": "Ballpit",
     "credit": "Sam"
   },
   {
-    "sequence": [["C"], ["G"], ["C"]],
+    "sequence": ["C", "G", "C"],
     "name": "Blue Balls",
     "credit": "EJ"
   },
   {
-    "sequence": [["C"], ["G"], ["C"]],
+    "sequence": ["C", "G", "C"],
     "name": "The Nutcracker",
     "credit": "Kevin"
   },
   {
-    "sequence": [["C"], ["C"], ["G"]],
+    "sequence": ["C", "C", "G"],
     "name": "Jimmy's balls",
     "credit": "Jon"
   }

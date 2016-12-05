@@ -1,14 +1,23 @@
 <piano></piano>
-<div data-ng-show="vm.newSong.visible">
+<div data-ng-show="vm.visibility.visible">
   <div class="song">
     <form>
-      <input placeholder="Title" data-ng-model="vm.newSong.name">
+      <input placeholder="Name" data-ng-model="vm.newSong.name">
       <input placeholder="Credit" data-ng-model="vm.newSong.credit">
       <button type="button" data-ng-click="vm.create()">Submit</button>
     </form>
     <button type="button" data-ng-click="vm.toggleNew()">Cancel</button>
   </div>
 </div>
-<div data-ng-hide="vm.newSong.visible">
+<div data-ng-hide="vm.visibility.visible">
   <button ng-click="vm.toggleNew()">Save Song</button>
+</div>
+<div class="buttonWrapper">
+  <button type="button" id="startRecord">Start Recording</button>
+  <button type="button" id="replayBtn">
+    <span class="buttonLabel">REPLAY</span>
+    <div class="playicon"></div>
+  </button>
+  <button type="button" id="resetBtn">RESET</button>
+  <button type="button" id="saveBtn">Save</button>
 </div>

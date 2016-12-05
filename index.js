@@ -3,6 +3,7 @@ var parser = require("body-parser");
 var hbs = require("express-handlebars");
 var mongoose = require("./db/schema");
 var app = express();
+// var piano= require("assets/js/piano")
 
 var Song = mongoose.model("Song");
 
@@ -28,13 +29,13 @@ app.get("/api/songs", function(req, res) {
 });
 
 app.get("/api/songs/:name", function(req, res) {
-  Song.findOne({name:
-    req.params.name}).then(function(song) {
+  Song.findOne({name:req.params.name}).then(function(song) {
     res.json(song);
   });
 });
 
 app.post("/api/songs", function(req, res) {
+  console.log(req.body)
   Song.create(req.body).then(function(song){
     res.json(song);
   });
