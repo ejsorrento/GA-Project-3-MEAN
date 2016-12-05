@@ -6,10 +6,10 @@ angular
     .config(["$stateProvider",
         RouterFunction
     ])
-    .controller("songsIndexController", [
+    .controller("songsWelcomeController", [
         "Song",
         "$state",
-        songsIndexControllerFunction
+        songsWelcomeControllerFunction
     ])
     .controller("songsShowController", [
         "$state",
@@ -19,7 +19,13 @@ angular
     ])
     .directive("piano", function(){
       return {
-        templateUrl: 'assets/js/ng-views/_piano.html',
+        templateUrl: 'assets/js/ng-views/piano/_piano.html',
+        replace: true
+      }
+    })
+    .directive("recorder", function(){
+      return {
+        templateUrl: 'assets/js/ng-views/recorder/_index.html',
         replace: true
       }
     })
@@ -38,15 +44,23 @@ function SongFactory($resource) {
     });
 }
 
-function songsIndexControllerFunction(Song, $state) {
-    this.songs = Song.query();
+function songsWelcomeControllerFunction(Song, $state) {
+    // this.songs = Song.query();
     this.newSong = new Song();
+    this.newSong = {visible: false}
+    this.toggleNew = function() {
+      this.newSong.visible = !(this.newSong.visible)
+      console.log(keyboardPlay)
+      keyboardPlay = false;
+      console.log(keyboardPlay)
+    };
     this.create = function() {
-        this.newSong.$save().then(function(song) {
-            $state.go("show", {
-                name: song.name
-            });
-        });
+      console.log("hit")
+        // this.newSong.$save().then(function(song) {
+        //     $state.go("show", {
+        //         name: song.name
+        //     });
+        // });
     };
 }
 
@@ -73,7 +87,7 @@ function RouterFunction($stateProvider) {
         .state("index", {
             url: "/",
             templateUrl: "/assets/js/ng-views/index.html",
-            controller: "songsIndexController",
+            controller: "songsWelcomeController",
             controllerAs: "vm"
         })
         .state("show", {

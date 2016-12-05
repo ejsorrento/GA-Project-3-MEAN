@@ -1,4 +1,5 @@
 /*global $: true, setTimeout: true, setInterval: true, clearInterval: true */
+var keyboardPlay = true;
 
 (function () {
     "use strict";
@@ -50,7 +51,9 @@
         pressKey = function () {
             return function (event) {
                 if (event.type == "keypress"){
+                  if (keyboardPlay == true){
                   var key = mapping[event.key]
+                }
                 } else {
                 var key = $(event.currentTarget).data('note');
               }
@@ -101,7 +104,7 @@
         };
 
     //Bind eventsg
-    $(document).keypress(pressKey());
+    $(document).keypress(pressKey())
     $(document).on('click', '.whitekey', pressKey());
     $(document).on('click', '#replayBtn',replay);
     $(document).on('click', '#resetBtn', clearNotesHistory);
