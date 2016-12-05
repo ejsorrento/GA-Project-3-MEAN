@@ -50,10 +50,9 @@ var keyboardPlay = true;
 
         pressKey = function () {
             return function (event) {
+              if (keyboardPlay == true){
                 if (event.type == "keypress"){
-                  if (keyboardPlay == true){
                   var key = mapping[event.key]
-                }
                 } else {
                 var key = $(event.currentTarget).data('note');
               }
@@ -65,6 +64,7 @@ var keyboardPlay = true;
                 notesHistory.push(key);
                 console.log(notesHistory)
             };
+          }
         },
 
         //replay all notes that had been previously played

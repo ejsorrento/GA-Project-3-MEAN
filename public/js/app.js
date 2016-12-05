@@ -51,7 +51,7 @@ function songsWelcomeControllerFunction(Song, $state) {
     this.toggleNew = function() {
       this.newSong.visible = !(this.newSong.visible)
       console.log(keyboardPlay)
-      keyboardPlay = false;
+      keyboardPlay = !(keyboardPlay);
       console.log(keyboardPlay)
     };
     this.create = function() {
