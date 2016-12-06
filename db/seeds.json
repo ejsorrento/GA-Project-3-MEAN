@@ -1,22 +1,18 @@
 [
   {
-    "sequence": [["C"], ["E"], ["G"]],
-    "name": "Ballpit",
-    "credit": "Sam"
+    "sequence": [["C4", 2], ["E4", 3], ["G4", 2]],
+    "songName": ""
   },
   {
-    "sequence": [["C"], ["G"], ["C"]],
-    "name": "Blue Balls",
-    "credit": "EJ"
+    "sequence": [["C4", 2], ["C2", 3], ["C2", 2]],
+    "songName": ""
   },
   {
-    "sequence": [["C"], ["G"], ["C"]],
-    "name": "The Nutcracker",
-    "credit": "Kevin"
+    "sequence": [["C4", 2], ["C2", 3], ["C2", 2]],
+    "songName": ""
   },
   {
-    "sequence": [["C"], ["C"], ["G"]],
-    "name": "Jimmy's balls",
-    "credit": "Jon"
+    "sequence": [["C4", 2], ["C2", 3], ["C2", 2]],
+    "songName": ""
   }
 ]
