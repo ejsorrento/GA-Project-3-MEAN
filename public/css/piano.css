@@ -1,3 +1,17 @@
+body{
+  background-image: url("piano-pic2.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: 'Josefin Slab', serif;
+  font-size: 60px;
+
+}
+
+h1{
+  font-size: 60px;
+  padding-top: 15px;
+}
+
 html{
   text-align: center;
 }
@@ -7,7 +21,7 @@ html{
     margin: auto;
     width: 392px;
     height: 151px;
-    padding-top: 150px;
+    padding-top: 20px;
 }
 
 .buttonWrapper {
@@ -62,11 +76,12 @@ html{
 }
 
 .highlighted {
-    background-color: #FFA21E;
+    background-color: rgba(0, 25, 156, 0.58);
 }
 
 .buttonLabel {
     float: left;
+    border-radius: 10px;
 }
 
 .playicon {
@@ -80,4 +95,6 @@ html{
 
 #noHistoryMessage {
     margin: 20px;
+    color: #b06a6a;
+    padding-top: 150px;
 }
