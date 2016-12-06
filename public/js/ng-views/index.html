@@ -1,3 +1,5 @@
+<h1>Diddy</h1>
+
 <piano></piano>
 <div data-ng-show="vm.visibility.visible">
   <div class="song">
@@ -13,23 +15,22 @@
   <button ng-click="vm.toggleNew()">Save Song</button>
 </div>
 <div class="buttonWrapper">
-  <button type="button" id="startRecord">Start Recording</button>
-  <button type="button" id="stopRecord">Stop Recording</button>
+  <button type="button" id="startRecord">Start</button>
+  <button type="button" id="stopRecord">Stop</button>
   <button type="button" id="replayBtn">
     <span class="buttonLabel">REPLAY</span>
     <div class="playicon"></div>
   </button>
   <button type="button" id="resetBtn">RESET</button>
-  <button type="button" id="saveBtn">Save</button>
 </div>
 
 <div data-ng-show="vm.visibilityForSongs.visible">
   <button type="button" data-ng-click="vm.toggleListSongs()">Cancel</button>
   <div data-ng-repeat="song in vm.songs">
-    <h2>Song name: {{song.name}}</h2>
-    <h2>Creator: {{song.credit}}</h2>
+    <h3><a data-ui-sref="show({name: song.name})">{{song.name}}</a></h3>
+    <h5>Creator: {{song.credit}}</h5>
   </div>
 </div>
 <div data-ng-hide="vm.visibilityForSongs.visible">
-  <button ng-click="vm.toggleListSongs()">Save Song</button>
+  <button ng-click="vm.toggleListSongs()">Song List</button>
 </div>

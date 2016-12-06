@@ -1,8 +1,27 @@
+body{
+  background-image: url("/assets/samples/7URYbL0 2.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: 'Josefin Slab', serif;
+  font-size: 60px;
+}
+
+h1{
+  font-size: 60px;
+  padding-top: 15px;
+  color: lemonchiffon;
+}
+
+html{
+  text-align: center;
+}
+
 #keyboard {
-    margin: 20px;
     border-left: 1px solid #000000;
+    margin: auto;
     width: 392px;
     height: 151px;
+    padding-top: 20px;
 }
 
 .buttonWrapper {
@@ -31,13 +50,14 @@
 }
 
 .whitekey {
-    background-color: #FFFFFF;
+    background-color: RGBA(255, 255, 255, .75);
     border-right: 1px solid #000000;
 }
 
 #upper .whitekey {
     width:40px;
     height: 100px;
+    border-top: 1px solid #000000;
 }
 
 #lower .whitekey {
@@ -56,11 +76,11 @@
 }
 
 .highlighted {
-    background-color: #FFA21E;
+    background-color: rgba(0, 25, 156, 0.58);
 }
 
 .buttonLabel {
-    float: left;
+    /*float: left;*/
 }
 
 .playicon {
@@ -68,20 +88,25 @@
     margin: 2px 0 2px 2px;
     border-top: 8px solid transparent;
     border-bottom: 8px solid transparent;
-    border-left: 10px solid #FFA21E;
+    border-left: 8px solid #1fff21;
 }
 
+button{
+  font-size: 15px;
+  width: 100px;
+  border-radius: 50%;
+  background-color: RGBA(255, 255, 255, .50);
+  border: 5px solid #ffffff;
+  transition-duration: 0.4s;
+}
+
+button:hover {
+    background-color: #9e2d2d;
+    color: white;
+}
 
 #noHistoryMessage {
     margin: 20px;
-}
-#startRecord {
-  width: 50px;
-  height: 50px;
-  border: 2px solid black;
-}
-#stopRecord {
-  width: 50px;
-  height: 50px;
-  border: 2px solid black;
+    color: #b06a6a;
+    padding-top: 150px;
 }

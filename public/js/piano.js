@@ -12,13 +12,18 @@ var storedSequence = [];
         $noHistoryMsg = $('#noHistoryMessage'),
         // Mapping of keypresses to keynotes
         mapping = {
-          "q": "c",
-          "w": "d",
-          "e": "e",
-          "r": "f",
-          "t": "g",
-          "y": "a",
-          "u": "b"
+          "q": "C",
+          "w": "D",
+          "e": "E",
+          "r": "F",
+          "t": "G",
+          "y": "A",
+          "u": "B",
+          "2": "Cs",
+          "3": "Ds",
+          "5": "Fs",
+          "6": "Gs",
+          "7": "As"
         },
 
         unhightlightKeys = function () {
@@ -41,7 +46,7 @@ var storedSequence = [];
 
             //try fetch sound element from cache, if not in cache, cache new sound element
             if (!sounds[key]) {
-                sounds[key] = $('#sound' + key.toUpperCase());
+                sounds[key] = $('#sound' + key);
             }
 
             //always play sound from the beginning
@@ -51,9 +56,9 @@ var storedSequence = [];
 
         pressKey = function () {
             return function (event) {
-              if (keyboardPlay == true){
+              if (keyboardPlay === true){
                 if (event.type == "keypress"){
-                  var key = mapping[event.key]
+                  var key = mapping[event.key];
                 } else {
                 var key = $(event.currentTarget).data('note');
               }
@@ -63,9 +68,9 @@ var storedSequence = [];
                 highlightKey(key);
 
                 notesHistory.push(key);
-                console.log(notesHistory)
-            };
-          }
+                console.log(notesHistory);
+            }
+          };
         },
 
         //replay all notes that had been previously played
@@ -96,16 +101,16 @@ var storedSequence = [];
 
         updateSource = function () {
           var source = document.getElementById('mp3Source');
-          source.src=''
+          source.src='';
         },
 
         startRecord = () => {
-          notesHistory = []
+          notesHistory = [];
         },
 
         stopRecord = () => {
-          storedSequence = notesHistory
-          console.log(storedSequence)
+          storedSequence = notesHistory;
+          console.log(storedSequence);
 
         },
 
@@ -116,12 +121,13 @@ var storedSequence = [];
         };
 
     //Bind eventsg
-    $(document).keypress(pressKey())
+    $(document).keypress(pressKey());
     $(document).on('click', '.whitekey', pressKey());
+    $(document).on('click', '.blackkey', pressKey());
     $(document).on('click', '#replayBtn',replay);
     $(document).on('click', '#resetBtn', clearNotesHistory);
-    $(document).on('click', '#startRecord', startRecord)
-    $(document).on('click', '#stopRecord', stopRecord)
+    $(document).on('click', '#startRecord', startRecord);
+    $(document).on('click', '#stopRecord', stopRecord);
     // $(document).on('click', '#submit', function(){
     //   console.log(notesHistory)
     //   $.ajax({
