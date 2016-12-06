@@ -1,12 +1,11 @@
 html{
   text-align: center;
-
 }
 
 #keyboard {
     border-left: 1px solid #000000;
     margin: auto;
-    width: 400px;
+    width: 392px;
     height: 151px;
     padding-top: 150px;
 }
