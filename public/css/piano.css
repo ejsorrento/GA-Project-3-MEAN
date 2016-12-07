@@ -12,6 +12,11 @@ h1{
   color: lemonchiffon;
 }
 
+h2 {
+  color: lemonchiffon;
+  padding-top: 20px;
+}
+
 html{
   text-align: center;
 }
@@ -91,12 +96,14 @@ html{
     border-left: 8px solid #1fff21;
 }
 
+
+
 button{
   font-size: 15px;
   width: 100px;
   border-radius: 50%;
   background-color: RGBA(255, 255, 255, .50);
-  border: 5px solid #ffffff;
+  border: 5px solid RGBA(255, 255, 255, .50);
   transition-duration: 0.4s;
 }
 

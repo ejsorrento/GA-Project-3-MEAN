@@ -5,7 +5,8 @@ var Schema = mongoose.Schema;
 var SongSchema = new Schema ({
   sequence: Array,
   name: String,
-  credit: String
+  credit: String,
+  timestamp: Date
 });
 
 var AlbumSchema = new Schema ({
