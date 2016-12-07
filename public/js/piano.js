@@ -13,14 +13,19 @@ var sounds = {}, //sounds cache
     $noHistoryMsg = $('#noHistoryMessage'),
     // Mapping of keypresses to keynotes
     mapping = {
-        "q": "c",
-        "w": "d",
-        "e": "e",
-        "r": "f",
-        "t": "g",
-        "y": "a",
-        "u": "b"
-    },
+             "q": "C",
+             "w": "D",
+             "e": "E",
+             "r": "F",
+             "t": "G",
+             "y": "A",
+             "u": "B",
+             "2": "Cs",
+             "3": "Ds",
+             "5": "Fs",
+             "6": "Gs",
+             "7": "As"
+           },
     duration = [], //pressed keys along with duration for playBack
 
     unhightlightKeys = function() {
@@ -43,7 +48,7 @@ var sounds = {}, //sounds cache
 
         //try fetch sound element from cache, if not in cache, cache new sound element
         if (!sounds[key]) {
-            sounds[key] = $('#sound' + key.toUpperCase());
+            sounds[key] = $('#sound' + key);
         }
 
         //always play sound from the beginning

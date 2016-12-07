@@ -8,7 +8,6 @@ angular
     ])
     .controller("songsWelcomeController", [
         "Song",
-        "$scope",
         "$state",
         songsWelcomeControllerFunction
     ])
@@ -53,10 +52,8 @@ function SongFactory($resource) {
     });
 }
 
-function songsWelcomeControllerFunction(Song, $scope, $state) {
-    // $scope.click = () => {
-    //   console.log("hello")
-    // }
+function songsWelcomeControllerFunction(Song, $state) {
+
     this.songs = Song.query();
     notesHistory = [];
     storedSequence = [];
