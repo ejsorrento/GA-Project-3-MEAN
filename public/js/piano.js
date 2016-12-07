@@ -2,7 +2,7 @@
 var keyboardPlay = true;
 var notesHistory = [];
 var storedSequence = [];
-// var recording = false;
+var recording = false;
 // (function () {
 //     "use strict";
 
@@ -77,8 +77,8 @@ var sounds = {}, //sounds cache
     },
 
     //replay all notes that had been previously played
-    replay = function() {
-      console.log(recording)
+    replay = function(recording = storedSequence) {
+
         var index = 0,
             interval = null,
             intervalTime = recording[index][1],
@@ -153,7 +153,9 @@ var sounds = {}, //sounds cache
 //Bind eventsg
 $(document).keypress(pressKey())
 $(document).on('click', '.whitekey', pressKey())
-$(document).on('click', '#replayBtn', replay);
+$(document).on('click', '#replayBtn', function(){
+  replay(storedSequence)
+});
 $(document).on('click', '#resetBtn', clearNotesHistory);
 $(document).on('click', '#startRecord', startRecord)
 $(document).on('click', '#stopRecord', stopRecord)

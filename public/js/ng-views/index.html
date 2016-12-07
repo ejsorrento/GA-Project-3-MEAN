@@ -26,7 +26,7 @@
 
 <div data-ng-show="vm.visibilityForSongs.visible">
  <button type="button" data-ng-click="vm.toggleListSongs()">Cancel</button>
- <div data-ng-repeat="song in vm.songs">
+ <div data-ng-repeat="song in vm.songs | orderBy: 'timeStamp' | reverse">
    <h3><a data-ui-sref="show({name: song.name})">{{song.name}}</a></h3>
    <h5>Creator: {{song.credit}}</h5>
    <button><play data-song="song">Play</play></button>

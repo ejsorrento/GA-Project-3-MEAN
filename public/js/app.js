@@ -32,10 +32,9 @@ angular
         },
         link: function(scope) {
           scope.play = function(song){
-            var recording;
             recording = scope.song.sequence;
             console.log(recording)
-            replay()
+            replay(recording)
           }
         }
       }
@@ -43,7 +42,12 @@ angular
     .factory("Song", [
         "$resource",
         SongFactory
-    ]);
+    ])
+    .filter('reverse', function() {
+  return function(items) {
+  return items.slice().reverse();
+  };
+});
 
 
 function SongFactory($resource) {
