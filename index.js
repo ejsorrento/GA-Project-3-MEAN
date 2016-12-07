@@ -35,6 +35,8 @@ app.get("/api/songs/:name", function(req, res) {
 });
 
 app.post("/api/songs", function(req, res) {
+  var timestamp = new Date();
+  req.body.timestamp = timestamp;
   console.log(req.body)
   Song.create(req.body).then(function(song){
     res.json(song);

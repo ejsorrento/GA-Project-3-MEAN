@@ -2,126 +2,155 @@
 var keyboardPlay = true;
 var notesHistory = [];
 var storedSequence = [];
-(function () {
-    "use strict";
+var recording = false;
+// (function () {
+//     "use strict";
 
-    //Define private variables and functions
-    var sounds = {},  //sounds cache
-        keys = {}, //keys cache
-        // notesHistory = [], //played notes history
-        $noHistoryMsg = $('#noHistoryMessage'),
-        // Mapping of keypresses to keynotes
-        mapping = {
-          "q": "c",
-          "w": "d",
-          "e": "e",
-          "r": "f",
-          "t": "g",
-          "y": "a",
-          "u": "b"
-        },
+//Define private variables and functions
+var sounds = {}, //sounds cache
+    keys = {}, //keys cache
+    // notesHistory = [], //played notes history
+    $noHistoryMsg = $('#noHistoryMessage'),
+    // Mapping of keypresses to keynotes
+    mapping = {
+        "q": "c",
+        "w": "d",
+        "e": "e",
+        "r": "f",
+        "t": "g",
+        "y": "a",
+        "u": "b"
+    },
+    duration = [], //pressed keys along with duration for playBack
 
-        unhightlightKeys = function () {
-            setTimeout(function () {
-                $('#keyboard .highlighted').removeClass('highlighted');
-            }, 500);
-        },
+    unhightlightKeys = function() {
+        setTimeout(function() {
+            $('#keyboard .highlighted').removeClass('highlighted');
+        }, 500);
+    },
 
-        highlightKey = function (key) {
-            unhightlightKeys();
+    highlightKey = function(key) {
+        unhightlightKeys();
 
-            //try fetch key element from cache, if not in cache, cache new key element
-            if (!keys[key]) {
-                    keys[key] = $('#keyboard .' + key);
-            }
-            keys[key].addClass('highlighted');
-        },
+        //try fetch key element from cache, if not in cache, cache new key element
+        if (!keys[key]) {
+            keys[key] = $('#keyboard .' + key);
+        }
+        keys[key].addClass('highlighted');
+    },
 
-        playSound = function (key) {
+    playSound = function(key) {
 
-            //try fetch sound element from cache, if not in cache, cache new sound element
-            if (!sounds[key]) {
-                sounds[key] = $('#sound' + key.toUpperCase());
-            }
+        //try fetch sound element from cache, if not in cache, cache new sound element
+        if (!sounds[key]) {
+            sounds[key] = $('#sound' + key.toUpperCase());
+        }
 
-            //always play sound from the beginning
-            sounds[key][0].currentTime = 0;
-            sounds[key][0].play();
-        },
+        //always play sound from the beginning
+        sounds[key][0].currentTime = 0;
+        sounds[key][0].play();
+    },
 
-        pressKey = function () {
-            return function (event) {
-              if (keyboardPlay == true){
-                if (event.type == "keypress"){
-                  var key = mapping[event.key]
+    pressKey = function() {
+        return function(event) {
+            if (keyboardPlay == true) {
+                if (event.type == "keypress") {
+                    var key = mapping[event.key]
                 } else {
-                var key = $(event.currentTarget).data('note');
-              }
-                $noHistoryMsg.hide();
-
+                    var key = $(event.currentTarget).data('note');
+                }
+                $noHistoryMsg.hide(); //doesnt work
                 playSound(key);
                 highlightKey(key);
-
-                notesHistory.push(key);
-                console.log(notesHistory)
+                if (recording == true) {
+                    duration[duration.length - 1] = event.timeStamp - duration[duration.length - 1]
+                    duration.push(event.timeStamp)
+                    notesHistory.push([key]);
+                } //if I want to record key clicks try putting this in playsound
             };
-          }
-        },
+        }
+    },
 
-        //replay all notes that had been previously played
-        replay = function () {
-            var index = 0,
-                interval = null;
-
-            if (notesHistory.length > 0) {
-                $noHistoryMsg.hide();
-                //loops through the sequence with duration
-
-                //replay all notes in notesHistory array for 1.5 second each
-                interval = setInterval(function () {
-
-                    if (index < notesHistory.length) {
-                        playSound(notesHistory[index]);
-                        highlightKey(notesHistory[index]);
+    //replay all notes that had been previously played
+    replay = function() {
+        var index = 0,
+            interval = null,
+            intervalTime = storedSequence[index][1],
+            intervalPlay = () => {
+                console.log(intervalTime)
+                interval = setInterval(function() {
+                    if (index < storedSequence.length) {
+                        console.log(storedSequence[index][0])
+                        playSound(storedSequence[index][0]);
+                        highlightKey(storedSequence[index][0]);
                         index += 1;
+                        console.log("hello3")
+                        interval1();
                     } else {
                         //clear interval when all recorded notes are played
                         clearInterval(interval);
                         unhightlightKeys();
                     }
+                }, intervalTime);
+            },
+            interval1 = () => {
+                console.log(storedSequence[index])
+                clearInterval(interval);
+                if (index < storedSequence.length) {
+                    intervalTime = storedSequence[index][1];
+                    intervalPlay();
+                }
+            };
 
-                }, 1500);
-            }
-        },
+        if (storedSequence.length > 0) {
+            console.log(storedSequence)
+            $noHistoryMsg.hide();
+            //loops through the sequence with duration
 
-        updateSource = function () {
-          var source = document.getElementById('mp3Source');
-          source.src=''
-        },
+            //replay all notes in the first item of each subarray in the storedSequence array, for a duration in miliseconds that is stored in the second item of each said subarray
+            intervalPlay();
+        }
+    },
 
-        startRecord = () => {
-          notesHistory = []
-        },
+    updateSource = function() {
+        var source = document.getElementById('mp3Source');
+        source.src = ''
+    },
 
-        stopRecord = () => {
-          storedSequence = notesHistory
-          console.log(storedSequence)
+    startRecord = (event) => {
+        notesHistory = [];
+        recording = true;
+        duration = [event.timeStamp];
+    },
 
-        },
+    stopRecord = (event) => {
+        // duration[duration.length-1] = event.timeStamp - duration[duration.length-1]
+        duration.pop()
+        console.log(duration)
+        console.log(notesHistory)
+            // notesHistory.unshift([" "])
+        for (var i = 0; i < duration.length; i++) {
+            notesHistory[i].push(Math.floor(duration[i]))
+        }
+        // notesHistory[notesHistory.length-1].push(Math.floor(duration[duration.length-1]))
+        storedSequence = notesHistory
+        console.log(storedSequence)
+        recording = false;
+    },
 
-        //empty notesHistory array
-        clearNotesHistory = function () {
-            $noHistoryMsg.show();
-            notesHistory = [];
-        };
+    //empty notesHistory array
+    clearNotesHistory = function() {
+        $noHistoryMsg.show();
+        notesHistory = [];
+    };
 
-    //Bind eventsg
-    $(document).keypress(pressKey())
-    $(document).on('click', '.whitekey', pressKey());
-    $(document).on('click', '#replayBtn',replay);
-    $(document).on('click', '#resetBtn', clearNotesHistory);
-    $(document).on('click', '#startRecord', startRecord)
-    $(document).on('click', '#stopRecord', stopRecord)
+//Bind eventsg
+$(document).keypress(pressKey())
+$(document).on('click', '.whitekey', pressKey());
+$(document).on('click', '#replayBtn', replay);
+$(document).on('click', '#resetBtn', clearNotesHistory);
+$(document).on('click', '#startRecord', startRecord)
+$(document).on('click', '#stopRecord', stopRecord)
     // $(document).on('click', '#submit', function(){
     //   console.log(notesHistory)
     //   $.ajax({
@@ -137,4 +166,4 @@ var storedSequence = [];
     //     console.log(response)
     //   })
     // })
-})();
+    // })();

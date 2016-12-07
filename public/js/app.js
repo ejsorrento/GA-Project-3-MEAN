@@ -8,6 +8,7 @@ angular
     ])
     .controller("songsWelcomeController", [
         "Song",
+        "$scope",
         "$state",
         songsWelcomeControllerFunction
     ])
@@ -23,11 +24,20 @@ angular
         replace: true
       }
     })
-    .directive("recorder", function(){
+    .directive("playSong", () => {
       return {
-        templateUrl: 'assets/js/ng-views/recorder/_index.html',
-        replace: true
-      }
+        restrict: 'E',
+        replace: true,
+        template: '<div ng-click="play(song)"></div>',
+        scope: {
+          name: "="
+        },
+        link: function(scope) {
+          scope.play = function(song){
+            console.log(song.sequence)
+          }
+        }
+        }
     })
     .factory("Song", [
         "$resource",
@@ -43,7 +53,10 @@ function SongFactory($resource) {
     });
 }
 
-function songsWelcomeControllerFunction(Song, $state) {
+function songsWelcomeControllerFunction(Song, $scope, $state) {
+    // $scope.click = () => {
+    //   console.log("hello")
+    // }
     this.songs = Song.query();
     notesHistory = [];
     storedSequence = [];
@@ -69,6 +82,7 @@ function songsWelcomeControllerFunction(Song, $state) {
 }
 
 function songsShowControllerFunction($state, $stateParams, Song) {
+    var self = this;
     this.song = Song.get({
         name: $stateParams.name
     });
@@ -84,6 +98,12 @@ function songsShowControllerFunction($state, $stateParams, Song) {
             $state.go("index");
         });
     };
+    this.playback = function(){
+      console.log(storedSequence)
+      storedSequence = self.song.sequence
+      console.log(storedSequence)
+      replay()
+    }
 }
 
 function RouterFunction($stateProvider) {
