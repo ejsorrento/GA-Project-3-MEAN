@@ -2,7 +2,7 @@
 var keyboardPlay = true;
 var notesHistory = [];
 var storedSequence = [];
-var recording = false;
+// var recording = false;
 // (function () {
 //     "use strict";
 
@@ -78,16 +78,17 @@ var sounds = {}, //sounds cache
 
     //replay all notes that had been previously played
     replay = function() {
+      console.log(recording)
         var index = 0,
             interval = null,
-            intervalTime = storedSequence[index][1],
+            intervalTime = recording[index][1],
             intervalPlay = () => {
                 console.log(intervalTime)
                 interval = setInterval(function() {
-                    if (index < storedSequence.length) {
-                        console.log(storedSequence[index][0])
-                        playSound(storedSequence[index][0]);
-                        highlightKey(storedSequence[index][0]);
+                    if (index < recording.length) {
+                        console.log(recording[index][0])
+                        playSound(recording[index][0]);
+                        highlightKey(recording[index][0]);
                         index += 1;
                         console.log("hello3")
                         interval1();
@@ -99,16 +100,16 @@ var sounds = {}, //sounds cache
                 }, intervalTime);
             },
             interval1 = () => {
-                console.log(storedSequence[index])
+                console.log(recording[index])
                 clearInterval(interval);
-                if (index < storedSequence.length) {
-                    intervalTime = storedSequence[index][1];
+                if (index < recording.length) {
+                    intervalTime = recording[index][1];
                     intervalPlay();
                 }
             };
 
-        if (storedSequence.length > 0) {
-            console.log(storedSequence)
+        if (recording.length > 0) {
+            console.log(recording)
             $noHistoryMsg.hide();
             //loops through the sequence with duration
 
@@ -151,7 +152,7 @@ var sounds = {}, //sounds cache
 
 //Bind eventsg
 $(document).keypress(pressKey())
-$(document).on('click', '.whitekey', pressKey());
+$(document).on('click', '.whitekey', pressKey())
 $(document).on('click', '#replayBtn', replay);
 $(document).on('click', '#resetBtn', clearNotesHistory);
 $(document).on('click', '#startRecord', startRecord)

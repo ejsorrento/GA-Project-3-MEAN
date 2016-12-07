@@ -29,6 +29,7 @@
  <div data-ng-repeat="song in vm.songs">
    <h3><a data-ui-sref="show({name: song.name})">{{song.name}}</a></h3>
    <h5>Creator: {{song.credit}}</h5>
+   <button><play data-song="song">Play</play></button>
  </div>
 </div>
 <div data-ng-hide="vm.visibilityForSongs.visible">
