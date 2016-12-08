@@ -58,6 +58,6 @@ app.delete("/api/songs/:name", function(req, res) {
 });
 // app.get("/api/album/songs/:id"
 
-app.listen(3001, () => {
-  console.log("app listening");
+app.listen(app.get("port"), () => {
+  console.log("sweet");
 });
