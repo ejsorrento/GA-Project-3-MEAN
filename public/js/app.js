@@ -80,6 +80,7 @@ function songsWelcomeControllerFunction(Song, $state) {
             self.songs = Song.query();
             $state.go("index");
         });
+        this.visibility = {visible: false}
     };
 }
 
@@ -91,6 +92,10 @@ function songsShowControllerFunction($state, $stateParams, Song) {
     this.update = function() {
         this.song.$update({
             name: $stateParams.name
+        }).then(() => {
+          $state.go("show", {
+            name: this.song.name
+          });
         });
     };
     this.destroy = function() {

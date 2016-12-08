@@ -1,37 +1,39 @@
-<h1>Diddy</h1>
+<h1>diddy</h1>
 
-<piano></piano>
+<piano class="piano"></piano>
 <div data-ng-show="vm.visibility.visible">
  <div class="song">
    <form>
      <input placeholder="Name" data-ng-model="vm.newSong.name">
      <input placeholder="Credit" data-ng-model="vm.newSong.credit">
-     <button type="button" data-ng-click="vm.create()">Submit</button>
+     <button type="button" data-ng-click="vm.create()">SUBMIT</button>
    </form>
-   <button type="button" data-ng-click="vm.toggleNew()">Cancel</button>
+   <button type="button" data-ng-click="vm.toggleNew()">CANCEL</button>
  </div>
 </div>
-<div data-ng-hide="vm.visibility.visible">
- <button ng-click="vm.toggleNew()">Save Song</button>
-</div>
 <div class="buttonWrapper">
- <button type="button" id="startRecord">Start</button>
- <button type="button" id="stopRecord">Stop</button>
+ <button type="button" id="startRecord">REC</button>
+ <button type="button" id="stopRecord">STOP</button>
  <button type="button" id="replayBtn">
    <span class="buttonLabel">REPLAY</span>
-   <div class="playicon"></div>
  </button>
  <button type="button" id="resetBtn">RESET</button>
 </div>
 
+<div data-ng-hide="vm.visibility.visible">
+ <button ng-click="vm.toggleNew()">SAVE SONG</button>
+</div>
+
+<br>
 <div data-ng-show="vm.visibilityForSongs.visible">
- <button type="button" data-ng-click="vm.toggleListSongs()">Cancel</button>
+ <button type="button" data-ng-click="vm.toggleListSongs()">CANCEL</button>
  <div data-ng-repeat="song in vm.songs | orderBy: 'timeStamp' | reverse">
-   <h3><a data-ui-sref="show({name: song.name})">{{song.name}}</a></h3>
-   <h5>Creator: {{song.credit}}</h5>
+   <h2><a id="showlink" data-ui-sref="show({name: song.name})">{{song.name}}</a></h2>
+   <h3 id="creator">Creator: {{song.credit}}</h3>
    <button><play data-song="song">Play</play></button>
  </div>
 </div>
+
 <div data-ng-hide="vm.visibilityForSongs.visible">
- <button ng-click="vm.toggleListSongs()">Song List</button>
+ <button ng-click="vm.toggleListSongs()">SONG LIST</button>
 </div>

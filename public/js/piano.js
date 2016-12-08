@@ -147,7 +147,7 @@ var sounds = {}, //sounds cache
     //empty notesHistory array
     clearNotesHistory = function() {
         $noHistoryMsg.show();
-        notesHistory = [];
+        storedSequence = [];
     };
 
 //Bind eventsg

@@ -1,17 +1,30 @@
+<h1 id="songShow">diddy</h1>
+
+<div class="showpage">
 <div data-ng-if="!vm.song">
   <h2>That Song Doesn't Exist</h2>
 </div>
 
 <div data-ng-if="vm.song">
   <h2>Song name: {{vm.song.name}}</h2>
-  <h2>Notes: {{vm.song.sequence}}</h2>
   <h2>Creator: {{vm.song.credit}}</h2>
 </div>
 
 
   <input type="text" ng-model="vm.song.name" placeholder="Name">
-  <input type="text" ng-model="vm.song.sequence" placeholder="Notes *Temporary*">
   <input type="text" ng-model="vm.song.credit" placeholder="Creator">
+  <br>
   <button data-ng-click="vm.update()">Update Song</button>
   <button data-ng-click="vm.destroy()">Delete Song</button>
-  <button data-ng-click="vm.playback()">Playback</button>
+  <button data-ui-sref="index()">Back</button>
+</div>
+<style>
+  body{
+    background-image: url("/assets/samples/piano-pic2.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: 'Josefin Slab', serif;
+    font-size: 60px;
+  }
+</style>
