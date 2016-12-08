@@ -1,16 +1,11 @@
-/*global $: true, setTimeout: true, setInterval: true, clearInterval: true */
-var keyboardPlay = true;
 var notesHistory = [];
 var storedSequence = [];
 var recording = false;
-// (function () {
-//     "use strict";
+
 
 //Define private variables and functions
 var sounds = {}, //sounds cache
     keys = {}, //keys cache
-    // notesHistory = [], //played notes history
-    $noHistoryMsg = $('#noHistoryMessage'),
     // Mapping of keypresses to keynotes
     mapping = {
              "q": "C",
@@ -64,14 +59,13 @@ var sounds = {}, //sounds cache
                 } else {
                     var key = $(event.currentTarget).data('note');
                 }
-                $noHistoryMsg.hide(); //doesnt work
                 playSound(key);
                 highlightKey(key);
                 if (recording == true) {
                     duration[duration.length - 1] = event.timeStamp - duration[duration.length - 1]
                     duration.push(event.timeStamp)
                     notesHistory.push([key]);
-                } //if I want to record key clicks try putting this in playsound
+                }
             };
         }
     },
@@ -83,7 +77,6 @@ var sounds = {}, //sounds cache
             interval = null,
             intervalTime = recording[index][1],
             intervalPlay = () => {
-                console.log(intervalTime)
                 interval = setInterval(function() {
                     if (index < recording.length) {
                         playSound(recording[index][0]);
@@ -98,7 +91,6 @@ var sounds = {}, //sounds cache
                 }, intervalTime);
             },
             interval1 = () => {
-                console.log(recording[index])
                 clearInterval(interval);
                 if (index < recording.length) {
                     intervalTime = recording[index][1];
@@ -107,8 +99,6 @@ var sounds = {}, //sounds cache
             };
 
         if (recording.length > 0) {
-            console.log(recording)
-            $noHistoryMsg.hide();
             //loops through the sequence with duration
 
             //replay all notes in the first item of each subarray in the storedSequence array, for a duration in miliseconds that is stored in the second item of each said subarray
@@ -135,13 +125,10 @@ var sounds = {}, //sounds cache
         $("#resetBtn").show();
         $("#saveBtn").show();
         duration.pop()
-        console.log(duration)
-        console.log(notesHistory)
         for (var i = 0; i < duration.length; i++) {
             notesHistory[i].push(Math.floor(duration[i]))
         }
         storedSequence = notesHistory
-        console.log(storedSequence)
         recording = false;
     },
 
@@ -152,8 +139,10 @@ var sounds = {}, //sounds cache
 
     showRecord = function(){
       keyboardPlay = !(keyboardPlay);
-      $('#song').hide()
-      $('#RecordBtn').show()
+      $('#form').hide()
+      $('#startRecord').show()
+      clearSave()
+      $('#saveBtn').hide()
     }
 
     //empty notesHistory array

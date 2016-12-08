@@ -136,6 +136,7 @@ button:hover {
 
 #saveBtn{
   display: none;
+  margin-bottom: 20px;
 }
 
 #replayBtn{

@@ -17,37 +17,37 @@ angular
         "Song",
         songsShowControllerFunction
     ])
-    .directive("piano", function(){
-      return {
-        templateUrl: 'assets/js/ng-views/piano/_piano.html',
-        replace: true
-      }
+    .directive("piano", function() {
+        return {
+            templateUrl: 'assets/js/ng-views/piano/_piano.html',
+            replace: true
+        }
     })
     .directive("play", () => {
-      return {
-        replace: true,
-        template: '<div ng-click="play()">Play</div>',
-        scope: {
-          song: "="
-        },
-        link: function(scope) {
-          scope.play = function(song){
-            recording = scope.song.sequence;
-            console.log(recording)
-            replay(recording)
-          }
+        return {
+            replace: true,
+            template: '<div ng-click="play()">Play</div>',
+            scope: {
+                song: "="
+            },
+            link: function(scope) {
+                scope.play = function(song) {
+                    recording = scope.song.sequence;
+                    console.log(recording)
+                    replay(recording)
+                }
+            }
         }
-      }
     })
     .factory("Song", [
         "$resource",
         SongFactory
     ])
     .filter('reverse', function() {
-  return function(items) {
-  return items.slice().reverse();
-  };
-});
+        return function(items) {
+            return items.slice().reverse();
+        };
+    });
 
 
 function SongFactory($resource) {
@@ -65,16 +65,12 @@ function songsWelcomeControllerFunction(Song, $state) {
     storedSequence = [];
     keyboardPlay = true;
     this.newSong = new Song();
-    this.visibility = {visible: false}
-    this.visibilityForSongs = {visible: false}
-    this.toggleListSongs = function(){
-      this.visibilityForSongs.visible = !(this.visibilityForSongs.visible)
+    this.visibilityForSongs = {
+        visible: false
     }
-    this.toggleNew = function() {
-      this.visibility.visible = !(this.visibility.visible)
-      keyboardPlay = !(keyboardPlay);
-      clearSave();
-    };
+    this.toggleListSongs = function() {
+        this.visibilityForSongs.visible = !(this.visibilityForSongs.visible)
+    }
     this.create = function() {
         this.newSong.sequence = storedSequence;
         this.newSong.$save().then(function(song) {
@@ -93,9 +89,9 @@ function songsShowControllerFunction($state, $stateParams, Song) {
         this.song.$update({
             name: $stateParams.name
         }).then(() => {
-          $state.go("show", {
-            name: this.song.name
-          });
+            $state.go("show", {
+                name: this.song.name
+            });
         });
     };
     this.destroy = function() {

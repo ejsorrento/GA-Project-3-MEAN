@@ -1,4 +1,4 @@
-<h1>diddy</h1>
+<header><img src="/assets/samples/Diddy-logo-white.png" alt="white_logo"></header>
 
 <piano id="piano"></piano>
 <div>
@@ -6,7 +6,7 @@
    <form>
      <input placeholder="Name" data-ng-model="vm.newSong.name">
      <input placeholder="Credit" data-ng-model="vm.newSong.credit">
-     <button type="button" id="submitBtn">SUBMIT</button>
+     <button type="button" ng-click="vm.create()" id="submitBtn">SUBMIT</button>
    </form>
    <button type="button" id="cancelBtn">CANCEL</button>
  </div>
@@ -22,7 +22,6 @@
 
  <button id="saveBtn">SAVE SONG</button>
 
-<br>
 <div data-ng-show="vm.visibilityForSongs.visible">
  <button type="button" data-ng-click="vm.toggleListSongs()">CANCEL</button>
  <div data-ng-repeat="song in vm.songs | orderBy: 'timeStamp' | reverse">
