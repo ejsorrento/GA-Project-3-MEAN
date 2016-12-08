@@ -81,7 +81,6 @@ function songsWelcomeControllerFunction(Song, $state) {
             self.songs = Song.query();
             $state.go("index");
         });
-        this.visibility = {visible: false}
     };
 }
 

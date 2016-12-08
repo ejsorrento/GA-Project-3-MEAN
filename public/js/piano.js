@@ -151,6 +151,8 @@ var sounds = {}, //sounds cache
     },
 
     showRecord = function(){
+      keyboardPlay = !(keyboardPlay);
+      $('#song').hide()
       $('#RecordBtn').show()
     }
 
@@ -174,3 +176,8 @@ $(document).on('click', '#startRecord', startRecord)
 $(document).on('click', '#stopRecord', stopRecord)
 $(document).on('click', "#cancelBtn", showRecord)
 $(document).on('click', "#submitBtn", showRecord)
+$(document).on('click', "#saveBtn", function(){
+  $('#form').show();
+  keyboardPlay = !(keyboardPlay);
+  $(event.currentTarget).hide();
+})

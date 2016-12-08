@@ -39,7 +39,7 @@ html{
   /*background-color: red;*/
 }
 
-.piano{
+#piano{
   padding-top: 80px;
   padding-bottom: 45px;
 }
@@ -142,5 +142,9 @@ button:hover {
   display: none;
 }
 #resetBtn{
+  display: none;
+}
+
+#form{
   display: none;
 }
