@@ -129,3 +129,18 @@ button:hover {
 #creator{
   color: lemonchiffon;
 }
+
+#stopRecord{
+  display: none;
+}
+
+#saveBtn{
+  display: none;
+}
+
+#replayBtn{
+  display: none;
+}
+#resetBtn{
+  display: none;
+}

@@ -6,9 +6,9 @@
    <form>
      <input placeholder="Name" data-ng-model="vm.newSong.name">
      <input placeholder="Credit" data-ng-model="vm.newSong.credit">
-     <button type="button" data-ng-click="vm.create()">SUBMIT</button>
+     <button type="button" id="submitBtn" data-ng-click="vm.create()">SUBMIT</button>
    </form>
-   <button type="button" data-ng-click="vm.toggleNew()">CANCEL</button>
+   <button type="button" id="cancelBtn" data-ng-click="vm.toggleNew()">CANCEL</button>
  </div>
 </div>
 <div class="buttonWrapper">
@@ -21,7 +21,7 @@
 </div>
 
 <div data-ng-hide="vm.visibility.visible">
- <button ng-click="vm.toggleNew()">SAVE SONG</button>
+ <button id="saveBtn" ng-click="vm.toggleNew()">SAVE SONG</button>
 </div>
 
 <br>

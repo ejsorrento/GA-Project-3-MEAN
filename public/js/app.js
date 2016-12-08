@@ -73,6 +73,7 @@ function songsWelcomeControllerFunction(Song, $state) {
     this.toggleNew = function() {
       this.visibility.visible = !(this.visibility.visible)
       keyboardPlay = !(keyboardPlay);
+      clearSave();
     };
     this.create = function() {
         this.newSong.sequence = storedSequence;
@@ -105,12 +106,6 @@ function songsShowControllerFunction($state, $stateParams, Song) {
             $state.go("index");
         });
     };
-    // this.playback = function(){
-    //   console.log(storedSequence)
-    //   storedSequence = self.song.sequence
-    //   console.log(storedSequence)
-    //   replay()
-    // }
 }
 
 function RouterFunction($stateProvider) {

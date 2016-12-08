@@ -86,11 +86,9 @@ var sounds = {}, //sounds cache
                 console.log(intervalTime)
                 interval = setInterval(function() {
                     if (index < recording.length) {
-                        console.log(recording[index][0])
                         playSound(recording[index][0]);
                         highlightKey(recording[index][0]);
                         index += 1;
-                        console.log("hello3")
                         interval1();
                     } else {
                         //clear interval when all recorded notes are played
@@ -124,33 +122,48 @@ var sounds = {}, //sounds cache
     },
 
     startRecord = (event) => {
+        $('#stopRecord').css("display", "inline-block")
+        $(event.currentTarget).css("display", "none");
         notesHistory = [];
         recording = true;
         duration = [event.timeStamp];
     },
 
     stopRecord = (event) => {
-        // duration[duration.length-1] = event.timeStamp - duration[duration.length-1]
+        $(event.currentTarget).hide();
+        $("#replayBtn").show();
+        $("#resetBtn").show();
+        $("#saveBtn").show();
         duration.pop()
         console.log(duration)
         console.log(notesHistory)
-            // notesHistory.unshift([" "])
         for (var i = 0; i < duration.length; i++) {
             notesHistory[i].push(Math.floor(duration[i]))
         }
-        // notesHistory[notesHistory.length-1].push(Math.floor(duration[duration.length-1]))
         storedSequence = notesHistory
         console.log(storedSequence)
         recording = false;
     },
 
+    clearSave = function(){
+      $('#replayBtn').hide()
+      $('#resetBtn').hide()
+    },
+
+    showRecord = function(){
+      $('#RecordBtn').show()
+    }
+
     //empty notesHistory array
-    clearNotesHistory = function() {
-        $noHistoryMsg.show();
+    clearNotesHistory = function(event) {
+        $(event.currentTarget).hide()
+        $("#startRecord").show()
+        $("#replayBtn").hide()
+        $("#saveBtn").hide()
         storedSequence = [];
     };
 
-//Bind eventsg
+//Bind events
 $(document).keypress(pressKey())
 $(document).on('click', '.whitekey', pressKey())
 $(document).on('click', '#replayBtn', function(){
@@ -159,19 +172,5 @@ $(document).on('click', '#replayBtn', function(){
 $(document).on('click', '#resetBtn', clearNotesHistory);
 $(document).on('click', '#startRecord', startRecord)
 $(document).on('click', '#stopRecord', stopRecord)
-    // $(document).on('click', '#submit', function(){
-    //   console.log(notesHistory)
-    //   $.ajax({
-    //     type: "POST",
-    //     url: "/api/songs",
-    //     dataType: 'json',
-    //     data: {
-    //       name: "hello",
-    //       sequence: notesHistory,
-    //       credit: $('#credit').val()
-    //     }
-    //   }).done((response) => {
-    //     console.log(response)
-    //   })
-    // })
-    // })();
+$(document).on('click', "#cancelBtn", showRecord)
+$(document).on('click', "#submitBtn", showRecord)
