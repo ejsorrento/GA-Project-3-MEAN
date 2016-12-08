@@ -21,7 +21,7 @@ angular
         return {
             templateUrl: 'assets/js/ng-views/piano/_piano.html',
             replace: true
-        }
+        };
     })
     .directive("play", () => {
         return {
@@ -33,11 +33,11 @@ angular
             link: function(scope) {
                 scope.play = function(song) {
                     recording = scope.song.sequence;
-                    console.log(recording)
-                    replay(recording)
-                }
+                    console.log(recording);
+                    replay(recording);
+                };
             }
-        }
+        };
     })
     .factory("Song", [
         "$resource",
@@ -67,10 +67,10 @@ function songsWelcomeControllerFunction(Song, $state) {
     this.newSong = new Song();
     this.visibilityForSongs = {
         visible: false
-    }
+    };
     this.toggleListSongs = function() {
-        this.visibilityForSongs.visible = !(this.visibilityForSongs.visible)
-    }
+        this.visibilityForSongs.visible = !(this.visibilityForSongs.visible);
+    };
     this.create = function() {
         this.newSong.sequence = storedSequence;
         this.newSong.$save().then(function(song) {
