@@ -8,4 +8,4 @@ Diddy hosts a library of piano samples spanning one octave. It records songs by 
 
 You can practice your songs on the responsive piano, and record them once they're perfected. Save your diddies and contribute to a vibrant community of dedicated artists worldwide.
 
-Created by EJ Sorrento, Kevin Hererra, Jon Reiser, and Sam Catherman. 
+Created by EJ Sorrento, Kevin Herrera, Jon Reiser, and Sam Catherman.
